@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    vector<int> twoOddNum(vector<int>& arr) {
+        // code here
+        int xorValue=0;
+        for(auto it:arr){
+            xorValue^=it;
+        }
+        int pos=31;
+        while(pos>=0){
+            if(xorValue & (1<<pos)){
+                break;
+            }
+            pos--;
+        }
+        
+        int num1=0, num2=0;
+        for(auto it:arr){
+            if(it & (1<<pos)){
+                num1 ^= it;
+            }
+            else{
+                num2 ^=it;
+            }
+            
+        }
+        return {num1, num2};
+    }
+};
